@@ -18,17 +18,17 @@
 
 | Campo | Valor |
 |---|---|
-| Nome | [seu nome completo] |
-| RA | [seu RA] |
+| Nome | Gabriel Vilela e Bianca Mendes|
+| RA | 240209 e 240286 |
 | Disciplina | Redes de Computadores |
-| Turma | [sua turma] |
-| Data | [data da realização] |
+| Turma | S.I. Noturno A |
+| Data | 15/05/2026 |
 | Fluxo | **A — Aluno com privilégio de administrador** |
 | SO utilizado | [Windows 10 / Windows 11] |
 | Ferramenta de proxy | Fiddler Classic |
 | Navegador(es) | [Chrome / Edge / Firefox / ...] |
-| Decriptação HTTPS habilitada? | [sim / não] |
-| Certificado Fiddler instalado durante a atividade? | [sim / não] |
+| Decriptação HTTPS habilitada? | [sim] |
+| Certificado Fiddler instalado durante a atividade? | [sim] |
 
 ---
 
@@ -36,34 +36,34 @@
 
 ### Captura
 
-<!-- arraste a captura aqui: sessão de http://example.com com Request/Response Raw -->
+<img width="1204" height="695" alt="Image 01" src="https://github.com/user-attachments/assets/3f3d67c4-a256-489e-b25b-078334afe8cb" />
 
 **Request-line:**
 
 ```http
-[ex: GET / HTTP/1.1]
+GET http://example.com/ HTTP/1.1
 ```
 
 **Status-line:**
 
 ```http
-[ex: HTTP/1.1 200 OK]
+HTTP/1.1 200 OK
 ```
 
 **Cabeçalhos do request:**
 
 | Cabeçalho | Função |
 |---|---|
-| [...] | [...] |
-| [...] | [...] |
-| [...] | [...] |
+| User-Agent | Identifica ao servidor o navegador, sistema operacional e dispositivo (desktop ou mobile) que está fazendo a solicitação |
+| Accept-Encoding: | Ele informa ao servidor quais tipos de conteúdo (formatos de dados) o cliente (navegador, aplicativo) consegue entender e processar |
+| Accept-Language | Informa ao servidor quais idiomas o cliente (navegador) prefere e consegue entender, permitindo que o servidor envie o conteúdo no idioma correto |
 
 **Resposta:**
 
 | Campo | Valor observado |
 |---|---|
-| `Content-Type` | [...] |
-| `Content-Length` ou `Transfer-Encoding` | [...] |
+| Content-Type | text/html | 
+| Content-Length | 528 |
 
 ---
 
@@ -71,35 +71,57 @@
 
 ### Captura
 
-<!-- arraste a captura aqui: Request Raw e Response JSON -->
+<img width="1203" height="984" alt="Image 02" src="https://github.com/user-attachments/assets/2bef2235-e8d0-4cc9-acbb-f96e87248a26" />
 
 **Request-line completa:**
 
 ```http
-[colar aqui]
+GET https://http.aulasrede.com.br/get?aluno=Bianca&curso=redes HTTP/1.1
 ```
 
 **Cabeçalhos-chave:**
 
 | Cabeçalho | Valor |
 |---|---|
-| `Host` | [...] |
-| `User-Agent` | [...] |
-| `Accept` | [...] |
+| Host | http.aulasrede.com.br |
+| User-Agent | Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 |
+| Accept | text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7 |
 
 **Campos do JSON de resposta:**
 
 ```json
 {
-  "args": [colar valor],
-  "headers": [colar valor resumido],
-  "origin": [colar valor]
+  "args": {
+    "aluno": [
+      "Bianca"
+    ],
+    "curso": [
+      "redes"
+    ]
+  },
+, 
+  "headers": {
+    "Accept": [
+      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    ],
+    "Accept-Language": [
+      "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"
+    ],
+    "Cache-Control": [
+      "no-cache"
+    ],
+    "Host": [
+      "func-http-aularedes-meta-w.azurewebsites.net"
+    ],
+...
+},
+  "origin": "200.210.165.75:13953",
 }
 ```
 
 **Resposta curta:** o que o campo `origin` representa? O `User-Agent` retornado coincide com o enviado?
 
-[resposta]
+O origin é o endereço IP da requisição + a porta. Sim.
 
 ---
 
@@ -107,34 +129,68 @@
 
 ### Captura
 
-<!-- arraste a captura aqui: POST para /post em Request Raw -->
+<img width="1919" height="1043" alt="Image 03" src="https://github.com/user-attachments/assets/1c4927ed-f4bc-4f5e-bd7d-ca994b3b9729" />
 
 **Request-line do POST:**
 
 ```http
-[colar aqui]
+POST https://http.aulasrede.com.br/post HTTP/1.1
 ```
 
 | Cabeçalho | Valor |
 |---|---|
-| `Content-Type` | [...] |
-| `Content-Length` | [...] |
+| `Content-Type` | application/x-www-form-urlencoded |
+| `Content-Length` | 103 |
 
 **Corpo do request:**
 
 ```text
-[colar aqui]
+POST https://http.aulasrede.com.br/post HTTP/1.1
+Host: http.aulasrede.com.br
+Connection: keep-alive
+Content-Length: 103
+Cache-Control: max-age=0
+sec-ch-ua: "Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Origin: https://http.aulasrede.com.br
+Content-Type: application/x-www-form-urlencoded
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://http.aulasrede.com.br/forms/post
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+
+nome=Gabriel+Vilela&disciplina=Redes&observacao=Teste+de+formul%C3%A1rio+HTTP.+Uhuuuu&interesse=headers
 ```
 
 **Campo `form` da resposta:**
 
 ```json
-[colar trecho relevante]
+  "form": {
+    "nome": [
+      "Gabriel Vilela"
+    ],
+    "disciplina": [
+      "Redes"
+    ],
+    "observacao": [
+      "Teste de formulário HTTP. Uhuuuu"
+    ],
+    "interesse": [
+      "headers"
+    ]
+  },
 ```
 
 **Resposta curta:** qual formato codifica o corpo? Qual aba mostra literalmente os bytes enviados: `WebForms` ou `Raw`?
 
-[resposta]
+O 'Content-Type: application/json; charset=utf-8'. O Raw.
 
 ---
 
@@ -142,16 +198,17 @@
 
 ### Captura
 
-<!-- arraste a captura aqui: lista do Fiddler com as quatro sessões -->
+<img width="723" height="298" alt="Image 04" src="https://github.com/user-attachments/assets/bb40d766-dd5f-404c-9d37-09ec6aae8a6e" />
 
 | # | Método | URL | Status-line | Tamanho/body |
 |---|---|---|---|---|
-| 1 | GET | `https://http.aulasrede.com.br/status/200` | [...] | [...] |
-| 2 | GET | `https://http.aulasrede.com.br/redirect-to?status_code=301&url=/get` | [...] | [...] |
-| 3 | GET | `https://http.aulasrede.com.br/status/404` | [...] | [...] |
-| 4 | GET | `https://http.aulasrede.com.br/status/500` | [...] | [...] |
+| 1 | GET | `https://http.aulasrede.com.br/status/200` | HTTP/1.1 200 OK | 38 |
+| 2 | GET | `https://http.aulasrede.com.br/redirect-to?status_code=301&url=/get` | HTTP/1.1 200 OK | 3175 |
+| 3 | GET | `https://http.aulasrede.com.br/status/404` | HTTP/1.1 404 Not Found | 45 |
+| 4 | GET | `https://http.aulasrede.com.br/status/500` | HTTP/1.1 500 Internal Server Error | 57 |
 
 **Resposta curta:** no `301`, qual cabeçalho informa o destino do redirecionamento?
+Erro HTTP.
 
 [resposta]
 
